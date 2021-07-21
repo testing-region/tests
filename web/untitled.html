@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Test</title>
+	<script src="jQuery-v3.6.0.js"></script>
+</head>
+<body>
+
+<h1>To Do List</h1>
+<input type="text" placeholder="new item">
+<button id="add">Add</button>
+<ol id="mylist"></ol>
+
+<script>
+	$(function() {
+		$("#add").on("click", function(){
+			var val =$("input").val();
+			if (val !== ""){
+				var elem = $("<li></li>").text(val);
+				$(elem).append("<button class='rem'>x</button>");
+				$("#mylist").append(elem);
+				$("input").val("");
+			};
+		});
+	});
+</script>
+</body>
+</html>
