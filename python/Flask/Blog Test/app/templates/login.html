@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div>
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <fieldset>
+            <legend>Log In</legend>
+            <div>
+                {{ form.email.label }}
+                {{ form.email }}
+            </div>
+            <div>
+                {{ form.password.label }}
+                {{ form.password }}
+            </div>
+        </fieldset>
+        <div>
+            {{ form.submit }}
+        </div>
+    </form>
+</div>
+{% endblock %}
