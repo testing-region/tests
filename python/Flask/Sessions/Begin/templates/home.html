@@ -1,0 +1,26 @@
+<!-- When a requested page template "extends" another, the requested template will
+contain all HTML of the extended parent -->
+
+
+
+<!-- Jinja handles the page mounting by declaring and matching reserved spaces in our templates named "blocks." -->
+
+
+<!--
+#block syntax:
+{% block block_name %}
+//codes
+{% endblock %}
+-->
+
+
+{% extends 'layout.html' %}
+
+
+{% block content %}
+	<div>
+		<h1>{{title}}</h1>
+		<p>{{description}}</p>
+	</div>
+{% endblock %}
+
