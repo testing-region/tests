@@ -1,0 +1,1 @@
+{"coke": 1.0, "fanta": 3.0, "sprite": 4.0, "Yoghurt": 3.0, "Ice Cream": 5.0, "Fan Ice": 3.0}
