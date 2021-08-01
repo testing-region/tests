@@ -3,6 +3,7 @@ from tkinter import *    #importing all objects in tkinter module
 from tkinter import scrolledtext		#import scrolled text library
 from tkinter import messagebox			#imports message box library
 from tkinter.ttk import Progressbar		#imports progressbar library
+from tkinter import ttk
 
 window = Tk()
 window.title("Testing Gui Code") 	#sets window title
