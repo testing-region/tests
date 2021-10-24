@@ -19,13 +19,10 @@ def convert_pdf_to_doc(pdf_file_path: str, doc_file_path: str) -> Tuple[str, str
     return doc_file_path
 
 
-#test
-if __name__ == '__main__':
-    pdf_file_path = 'FERMI ESTIMATION MINI PROJECT.pdf'
-    doc_file_path = 'test.docx'
-    convert_pdf_to_doc(pdf_file_path, doc_file_path)
-    result = docx2txt.process(doc_file_path)
-    print(result)
-    tts = gTTS(text=result, lang='en-GB')
-    tts.save("test.mp3")
-    print("done")
+pdf_file_path = input("Enter pdf file path: ")
+doc_file_path = pdf_file_path.replace(".pdf", ".doc")
+convert_pdf_to_doc(pdf_file_path, doc_file_path)
+tts = gTTS(text=docx2txt.process(doc_file_path), lang="en")
+tts.save(pdf_file_path.replace(".pdf", ".mp3"))
+
+print("Done")
