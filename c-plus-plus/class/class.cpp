@@ -68,7 +68,7 @@ private:
 int main()
 {
     TestClass ob("Hello World");
-    cout << ob.getName();
+    cout << ob.getName() << endl;
     TestClass ob1("Hello World");
     cout << ob1.getName();
     return 0;
