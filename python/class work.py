@@ -12,26 +12,27 @@ import math
 user_money = float(input("How much money do you have?: "))
 
 # Set the nintendo price
-nintendo_price = 249.99
+nintendo_price = 250
 
 # Find the difference of the amount
 difference = math.modf(user_money/nintendo_price)
 
 # Set the number of nintendo and the remainder of the money
 number_of_nintendo = int(difference[1])
-money_left = difference[0]
+money_left = round(difference[0], 2)
 
 # Set money needed to buy a nintendo wii
 amount_needed = nintendo_price - money_left
-# Round to 2 decimal places
-amount_needed = round(amount_needed, 2)
 
 # Check if money is sufficient or not
-if user_money > nintendo_price:
+if user_money >= nintendo_price:
+    # Display message
     print("You can buy", number_of_nintendo, "Nintendo Wiis")
     print("You need", amount_needed, "dollars to buy an extra one")
 else:
+    # Check for the amount required if the user's money is less than the nintendo price
     amount_required = nintendo_price - user_money
+    # Display message
     print("You don't have enough money to buy a Nintendo Wii")
     print("You need", amount_required, "dollars more.")
 
