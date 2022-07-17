@@ -8,8 +8,9 @@ HINTS = ("snake", "scrambled", "CMIS101", "CMIS210", "solution", "technology")
 
 # create a jumbled version of the word
 
+
 def createJumbled(word):
-    jumble =""
+    jumble = ""
     while word:
         position = random.randrange(len(word))
         jumble += word[position]
@@ -17,6 +18,7 @@ def createJumbled(word):
     return jumble
 
 # start the game
+
 
 print("""
            Word Jumble!
@@ -26,7 +28,7 @@ helpcount = 0
 totalGame = 0
 playMore = 'yes'
 while playMore == 'yes':
-# pick one word randomly from the sequence
+    # pick one word randomly from the sequence
     word = random.choice(WORDS)
     index = WORDS.index(word)
 # create a variable to use later to see if the guess is correct
@@ -36,7 +38,7 @@ while playMore == 'yes':
     print("\nFor a hint, type in 'yes'. If not, type in 'no'.")
     help = input("Do you need a hint?: ")
     if help == "yes":
-        hint = HINTS[index]#getHint(word)
+        hint = HINTS[index]  # getHint(word)
         print(hint)
         helpcount += 1
         guess = input("\nYour guess: ")
@@ -47,7 +49,7 @@ while playMore == 'yes':
         print("\nFor a hint, type in 'yes'. If not, type in 'no'.")
         help = input("Do you need a hint?: ")
         if help == "yes":
-            hint = HINTS[index]#getHint(word)
+            hint = HINTS[index]  # getHint(word)
             print(hint)
             helpcount += 1
         guess = input("Your guess: ")
@@ -59,7 +61,7 @@ while playMore == 'yes':
     print("\nTo continue game, type 'yes'.")
     playMore = input("Do you want to continue: ")
 print('\n\n')
-print('    Total games:\t',totalGame)
-print('Sought for help:\t',helpcount)
-print(' Final Score is:\t',totalGame-helpcount)
+print('    Total games:\t', totalGame)
+print('Sought for help:\t', helpcount)
+print(' Final Score is:\t', totalGame-helpcount)
 print("Thanks for playing.")
