@@ -1,11 +1,17 @@
-a = int(input("Enter a number: "))
-c = 0
+## List of prime numbers
+# 5915587277
+# 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97.
+################################################################################
 
-for x in range(1,a):
-    if a%x == 0:
-        c+=1
+# Goal efficiency: O(sqrt(n))
 
-if c == 1:
-    print(a,"is a prime number\n")
-else:
-    print(a,"is not a prime number\n")
+def check_if_prime(n):
+    if n == 1:
+        return False
+    for i in range(2, int(n**0.5)+1):
+        if n % i == 0:
+            return False
+    return True
+
+# # test
+print(check_if_prime(98764321234))
