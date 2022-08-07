@@ -4,7 +4,8 @@ items = {
 'sprite': 4.0,
 }
 
-print(items)
+# print(items)
+print(f"items: {items}")
 
 items.remove('coke')
 
