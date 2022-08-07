@@ -10,4 +10,3 @@ print(f"items: {items}")
 items.remove('coke')
 
 print(items)
-
