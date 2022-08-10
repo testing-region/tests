@@ -51,7 +51,7 @@ player5.goto(-250, 20)
 player5.pendown()
 
 # Move players using random integers
-for x in range(200):
+for x in range(150):
     player1.forward(randint(1,5))
     player2.forward(randint(1,5))
     player3.forward(randint(1,5))
@@ -66,7 +66,7 @@ distance_covered = {
     "player5": player5.xcor(),
     }
 
-print(distance_covered.items())
+# print(distance_covered.items())
 
 # prevent the window from closing
 # closes the window when the mouse is clicked
