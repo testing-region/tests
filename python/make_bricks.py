@@ -3,8 +3,8 @@ def make_bricks(small, big, goal):
     return False
   elif small < (goal % 5):
     return False
-  elif goal // 5 < big:
-      return False
+#  elif goal // 5 < big:
+#     return False
   else:
     return True
 
