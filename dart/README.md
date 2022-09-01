@@ -1,1 +1,1 @@
-Dart feels more like C++
+Dart feels more like a combination of c++ and javascript
