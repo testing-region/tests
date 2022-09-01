@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
 
-
 void main() {
-    runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-    @override
-    Widget build(BuildContext context) {
-	return MaterialApp(home: Scaffold(
-	    appBar: AppBar(
-		title: Text('Flutter From Scratch'),
-	    ),
-	));
-    }
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Flutter From Scratch'),
+        ),
+        body: const Text('Hello World'),
+      ),
+    );
+  }
 }
