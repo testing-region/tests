@@ -1,4 +1,13 @@
 def addTwoNumbers(l1, l2):
+    """Add two numbers
+
+    Args:
+        l1 (array): array of int type
+        l2 (array): array of int type
+
+    Returns:
+        int: the sum of two numbers
+    """
     r_l1, r_l2 = l1[::-1], l2[::-1]
     new_l1 = new_l2 = ''
 
