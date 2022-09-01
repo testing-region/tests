@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
 // Seems a default build() function is needed
 // It is used to build context, though I don't get the logic 
 // behind it yet. The naming makes so much sense. Nice one GOOGLE
+    @override
     Widget build(BuildContext context) {
 
     // Since we want our app to use material ui convention, we 
