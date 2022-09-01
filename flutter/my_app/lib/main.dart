@@ -14,7 +14,13 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(
           title: const Text('Flutter From Scratch'),
         ),
-        body: const Text('Hello World'),
+        body: Center(
+          child: Column(
+            children: const [
+              Text('Hello World', textScaleFactor: 3.0),
+            ],
+          ),
+        ),
       ),
     );
   }
