@@ -3,12 +3,10 @@
 import random
 
 WORDS = ("python", "jumble", "easy", "difficult", "answer", "xylophone")
-
 HINTS = ("snake", "scrambled", "CMIS101", "CMIS210", "solution", "technology")
 
+
 # create a jumbled version of the word
-
-
 def createJumbled(word):
     jumble = ""
     while word:
