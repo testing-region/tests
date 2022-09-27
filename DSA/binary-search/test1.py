@@ -12,19 +12,21 @@ def linear_search(arr, num):
         return "Element not present in array"
 '''
 
-def binary_search(arr, num):
-    mid = math.floor(len(arr)/2)
+start = 0
+stop = len(arr) - 1
+
+def binary_search(arr, target, start, stop):
+    mid_index = math.floor((start+stop)/2)
     
-    if arr[mid] == num:
-        return mid
-    elif arr[mid] > num:
-        arr = arr[:mid-1]
-    elif arr[mid] < num:
-        arr = arr[mid-1:]
+    if arr[mid_index] == target:
+        return mid_index
+    elif len(arr[start:stop]) == 0:
+        return "Number not present in array"
+    
+    if arr[mid_index] > target:
+        return binary_search(arr, target, start, mid_index - 1)
     else:
-        return "Element not present in array"
-    
-    return binary_search(arr, num)
+        return binary_search(arr, target, mid_index + 1, stop)
 
 
-print(binary_search(arr, 8))
+print(binary_search(arr, 8, start, stop))
