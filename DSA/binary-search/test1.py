@@ -1,6 +1,3 @@
-import math
-
-
 arr = [i for i in range(1024)]
 
 start = 0
@@ -14,7 +11,7 @@ def binary_search(arr, target, start, stop):
 
     # no slicing prevents wrong indices from being returned if 
     # the target number is present in the array.
-    mid_index = math.floor((start+stop)/2)
+    mid_index = (start+stop) // 2
     
     if arr[mid_index] == target:
         return mid_index
