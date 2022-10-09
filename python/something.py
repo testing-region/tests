@@ -37,16 +37,16 @@ if hoursWorked > 40:
     grossPay = normalPay + overtimeSalary
     overtimeTaxes = 0.015 * overtimeSalary
     normalTaxes = 0.1 * normalPay
-    netPay = (grossPay - normalTaxes) + (overtimeSalary - overtimeTaxes)
-    print("Your gross pay is", round(grossPay, 2))
-    print("Your normal taxes:", round(normalTaxes, 2))
-    print("Your overtime taxes:", round(overtimeTaxes, 2))
-    print("Your net pay is", round(netPay, 2))
+    netPay = (normalPay - normalTaxes) + (overtimeSalary - overtimeTaxes)
+    print("Your gross pay is", "${:,.2f}".format(grossPay))
+    print("Your normal taxes:", "${:,.2f}".format(normalTaxes))
+    print("Your overtime taxes:", "${:,.2f}".format(overtimeTaxes))
+    print("Your net pay is", "${:,.2f}".format(netPay))
 else:
     grossPay = hoursWorked * hourlyPay
     normalTaxes = 0.1 * grossPay
     netPay = grossPay - normalTaxes
-    print("Your gross pay is", round(grossPay, 2))
-    print("Your taxes:", round(normalTaxes, 2))
-    print("Your net pay:", round(netPay, 2))
+    print("Your gross pay is", "${:,.2f}".format(grossPay))
+    print("Your taxes:","${:,.2f}".format(normalTaxes))
+    print("Your net pay:", "${:,.2f}".format(netPay))
 
