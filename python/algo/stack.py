@@ -33,3 +33,5 @@ nums.push(45)
 nums.pop()
 nums.push(7)
 nums.display()
+
+"".find()
