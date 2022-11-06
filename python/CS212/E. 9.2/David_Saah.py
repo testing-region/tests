@@ -19,7 +19,7 @@ for word in words:
     if len(word) > 20:
         print(word)
 
-time.sleep(5)
+time.sleep(2)
 ################
 ### Q 9.2
 ################
@@ -53,7 +53,7 @@ no_e_percent = (num_e / len(words)) * 100
 print("")
 print("The percentage of words with no 'e' is", round(no_e_percent, 2), "%")
 
-time.sleep(5)
+time.sleep(2)
 ################
 ### Q 9.3
 ################
@@ -90,7 +90,7 @@ for word in words:
 
 print(forbidden_word_count, "words do not have the forbidden letters")
 
-time.sleep(5)
+time.sleep(2)
 ################
 ### Q 9.4
 ################
@@ -128,7 +128,7 @@ for word in words:
 
 print(num_words, "word(s) uses only '", characters, "'")
 
-time.sleep(5)
+time.sleep(2)
 ################
 ### Q 9.5
 ################
