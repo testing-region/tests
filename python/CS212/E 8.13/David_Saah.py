@@ -51,5 +51,5 @@ def rotate_word(word, shift):
     
     return new_word
 
-print("abcde with shift=1:", rotate_word("abcde", 1))
-print("abcde with shift=5:", rotate_word("programming", 5))
+print("cheer with shift = 1:", rotate_word("cheer", 7))
+print("abcde with shift = 1:", rotate_word("HAL", 1))
