@@ -1,0 +1,57 @@
+                                            COUNTRY DATA                                            
+----------------------------------------------------------------------------------------------------
+           Country Name              Mobile subscriptions per capita    Internet users per capita   
+----------------------------------------------------------------------------------------------------
+Algeria                                           0.971                           0.121             
+Angola                                            0.513                           0.032             
+Benin                                             0.828                            0.02             
+Botswana                                          1.43                            0.056             
+Burkina Faso                                      0.543                            0.01             
+Burundi                                           0.216                           0.015             
+Cameroon                                          0.566                           0.032             
+Cape Verde                                        0.79                            0.279             
+Central African Republic                          0.203                           0.004             
+Chad                                              0.368                           0.015             
+Comoros                                           0.326                           0.032             
+Democratic Republic of the Congo                  0.252                           0.004             
+Republic of the Congo                             0.919                           0.053             
+Cote d'Ivoire                                     0.868                           0.042             
+Djibouti                                          0.258                           0.032             
+Egypt                                             1.114                           0.232             
+Equatorial Guinea                                 0.694                            0.02             
+Eritrea                                           0.048                           0.031             
+Ethiopia                                          0.212                           0.005             
+Gabon                                             1.752                           0.059             
+The Gambia                                        0.793                           0.068             
+Ghana                                             0.995                            0.05             
+Guinea                                            0.417                           0.008             
+Guinea-Bissau                                     0.65                            0.022             
+Kenya                                             0.683                           0.089             
+Lesotho                                           0.676                            0.04             
+Liberia                                           0.585                           0.005             
+Libya                                             1.536                           0.057             
+Madagascar                                        0.369                           0.014             
+Malawi                                            0.254                           0.041             
+Mali                                              0.888                           0.015             
+Mauritania                                        1.144                           0.021             
+Mauritius                                         1.116                           0.218             
+Morocco                                           1.183                           0.401             
+Mozambique                                        0.328                           0.025             
+Namibia                                           1.108                           0.058             
+Niger                                             0.309                           0.007             
+Nigeria                                           0.637                           0.248             
+Rwanda                                            0.461                           0.036             
+Sao Tome and Principe                             0.641                            0.14             
+Senegal                                           0.841                           0.133             
+Seychelles                                        1.509                           0.349             
+Sierra Leone                                      0.385                           0.003             
+Somalia                                           0.063                            0.01             
+South Africa                                      1.414                           0.091             
+Sudan                                             0.78                            0.118             
+Swaziland                                         0.567                           0.063             
+Tanzania                                          0.548                           0.014             
+Togo                                              0.479                           0.048             
+Tunisia                                           1.174                            0.32             
+Uganda                                            0.455                           0.089             
+Zambia                                            0.719                           0.056             
+Zimbabwe                                          0.916                           0.103             
