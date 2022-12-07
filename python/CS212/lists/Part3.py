@@ -14,4 +14,4 @@ count_76 = my_list.count(76)
 
 my_list.remove(76)
 
-my_list.pop(my_list.index(True))
+my_list.pop(my_list.index(True)) 

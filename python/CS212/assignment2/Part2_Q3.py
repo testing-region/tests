@@ -6,7 +6,8 @@ from Part2_Q1 import population_list
 
 
 def store_info():
-    """Stores the country name, mobile subscriptions per capita and internet users per capita data into a file"""
+    """Stores the country name, mobile subscriptions per capita and 
+    internet users per capita data into a file"""
 
     # Create lists to store new data
     mobile_subs_per_cap = []
@@ -22,7 +23,8 @@ def store_info():
 
     # Files are streams of data.
     # Using the `print` function writes its arguments to the system's standard output.
-    # If the standard output is changed to a file, then the print function displays the value inside the file rather than the default standard output
+    # If the standard output is changed to a file, then the print function displays the 
+    # value inside the file rather than the default standard output
 
     # setting the standard output to a file
     sys.stdout = open("country info.txt", "w")

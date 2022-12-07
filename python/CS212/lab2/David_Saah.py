@@ -20,7 +20,7 @@ tempo_mile_secs = 12
 tempo_mile_time = tempo_mile_distance * ((tempo_mile_mins * 60) + tempo_mile_secs)
 
 total_time = easy_mile_time + tempo_mile_time
-total_time_mins = int(total_time/60)
+total_time_mins = total_time // 60
 
 # 8 mins is needed for the time to reach 7 am
 # let the breakfast hour be 7
