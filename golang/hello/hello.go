@@ -7,6 +7,6 @@ import (
 )
 
 func main() {
-	message := greetings.Hello("Gladys")
+	message := greetings.Hello("David")
 	fmt.Println(message)
 }
