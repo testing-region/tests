@@ -31,7 +31,7 @@ public class LabProgram1 {
 
         System.out.println();
         System.out.println("Thank you!");
-        System.out.printf("You entered %d even numbers, %d odd numbers and %d zeros", even, odd, zero);
+        System.out.printf("You entered %d even numbers, %d odd numbers and %d zeros\n", even, odd, zero);
         getInput.close();
     }
 }
