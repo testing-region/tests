@@ -9,7 +9,7 @@ Remember: Comments tell you the why behind a code
 title("Turtle Race")
 
 # make player objects from Turtle class
-player1 = Turtle() 
+player1 = Turtle()
 player2 = Turtle()
 player3 = Turtle()
 player4 = Turtle()
@@ -52,11 +52,11 @@ player5.pendown()
 
 # Move players using random integers
 for x in range(150):
-    player1.forward(randint(1,5))
-    player2.forward(randint(1,5))
-    player3.forward(randint(1,5))
-    player4.forward(randint(1,5))
-    player5.forward(randint(1,5))
+    player1.forward(randint(1, 5))
+    player2.forward(randint(1, 5))
+    player3.forward(randint(1, 5))
+    player4.forward(randint(1, 5))
+    player5.forward(randint(1, 5))
 
 distance_covered = {
     "player1": player1.xcor(),
