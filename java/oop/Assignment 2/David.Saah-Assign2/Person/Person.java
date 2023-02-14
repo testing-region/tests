@@ -195,4 +195,15 @@ public class Person {
         }
         return false;
     }
+
+    public boolean isOlder(Person otherPerson) {
+        if (getAge() > otherPerson.getAge()) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isYounger(Person otherPerson) {
+        return !isOlder(otherPerson);
+    }
 }
