@@ -19,6 +19,13 @@ public class Person {
     private String gender;
     private String[] genderTypes = { "male", "female" };
 
+    /**
+     * Person constructor
+     * 
+     * Sets default values to field names: name, age, gender
+     * Randomly assigns gender of new object
+     * 
+     */
     public Person() {
         // create random object
         Random random = new Random();
@@ -31,6 +38,15 @@ public class Person {
         setGender(getGenderTypes()[option]);
     }
 
+    /**
+     * Person constructor with parameters
+     * 
+     * Sets the field names of person object with given values
+     * 
+     * @param name   the name of a person
+     * @param age    the age of the person
+     * @param gender the gender of the person, whether "male" or "female"
+     */
     public Person(String name, byte age, String gender) {
         setPerson(name, age, gender);
     }
