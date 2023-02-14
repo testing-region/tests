@@ -168,6 +168,19 @@ public class Person {
     }
 
     /**
+     * Checks if two person objects have the same age
+     * 
+     * @param otherPerson another person object
+     * @return whether the two person objects have the same age
+     */
+    public boolean isSameAge(Person otherPerson) {
+        if (getAge() == otherPerson.getAge()) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * Checks if two person objects are equal
      * i.e. they have the same name and age
      * 
@@ -177,7 +190,7 @@ public class Person {
      * 
      */
     public boolean equals(Person otherPerson) {
-        if (isSameName(otherPerson) && (getAge() == otherPerson.getAge())) {
+        if (isSameName(otherPerson) && isSameAge(otherPerson)) {
             return true;
         }
         return false;
