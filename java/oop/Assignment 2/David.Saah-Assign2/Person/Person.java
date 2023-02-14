@@ -153,4 +153,20 @@ public class Person {
         setAge(age);
         setGender(gender);
     }
+
+    /**
+     * Checks if two person objects are equal
+     * i.e. they have the same name and age
+     * 
+     * @param otherPerson another person object
+     * 
+     * @return whether the person objects are equal or not
+     * 
+     */
+    public boolean equals(Person otherPerson) {
+        if ((getName().equals(otherPerson.getName()) && (getAge() == otherPerson.getAge()))) {
+            return true;
+        }
+        return false;
+    }
 }
