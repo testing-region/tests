@@ -1,0 +1,17 @@
+Region	Population	Capital
+Ahafo	564668	Goaso
+Ashanti	5440463	Kumasi
+Bono 	1208649	Sunyani
+Bono East	1203400	Techiman
+Central	2859821	Cape Coast
+Eastern	2925653	Koforidua
+Greater Accra	5455692	Accra
+North East	658946	Nalerigu
+Northern	2310939	Tamale
+Oti	747248	Dambai
+Savannah	653266	Damongo
+Upper East	1301226	Bolgatanga
+Upper West	901502	Wa
+Volta	1659040	Ho
+Western	2060585	Takoradi
+Western North	880921	Sefwi-Wiawso

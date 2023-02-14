@@ -1,0 +1,210 @@
+---
+title: "Homework Assignment 2"
+author: "David Abeiku Saah"
+date: "2023-02-12"
+output: word_document
+---
+
+```{r setup, message=FALSE, warning=FALSE}
+library(readr)
+
+StudentsData <- read_delim("StudentsData.txt", 
+    delim = "\t", escape_double = FALSE, 
+    trim_ws = TRUE)
+
+GhanaRegions <- read_delim("GhanaRegions.txt", 
+    delim = "\t", escape_double = FALSE, 
+    trim_ws = TRUE)
+```
+
+### Question 1
+
+a. Gender is the explanatory variable while the response variable is Cafeteria. This is because we are trying to check if a student's gender determines the cafeteria they prefer to eat from.
+
+b. A Two Way Table for Cafeteria and Gender
+```{r}
+tbl = table(StudentsData$Cafeteria, StudentsData$Gender); tbl
+colnames(tbl) = c("Female", "Male")
+rownames(tbl) = c("Akornor", "BigBen", "Munchies")
+tbl
+```
+
+c. Gender and Cafeteria are both categorical variables. Using raw data counts does not give a precise information about the relationship between the variables. Conditional percentages allow us to compare the distribution with a numerical summary restricted to each value of the explanatory variable. It gives the "condition" for which the explanatory variable (Gender) may "affect" the response variable (Cafeteria). Since Gender (explanatory variable) is in the column of the two-way table, we use conditional column percentages.
+
+d. A Two Way Table for Cafeteria and Gender with conditional percentages.
+```{r}
+tbl_prop = round(100 * prop.table(tbl, 2), 1)
+tbl_prop
+```
+
+e. Column 1 = 11.3 + 42.5 + 46.2 = 100
+Column 2 = 24.1 + 29.5 + 46.4 = 100
+Yes, each column adds up to 100.
+
+f. Percentage of male students who prefer BigBen: 29.5%
+Percentage of female students who prefer BigBen: 42.5%
+
+g. Percentage of male students who prefer Akornor: 24.1%
+Percentage of female students who prefer Akornor: 11.3%
+
+h. From the two-way table of conditional percentages, the majority of males (46.4%) and females (46.2%) prefer Munchies. Consequently, the least preferred cafeteria for both genders (24.1% for males and 11.3% for females) is Akornor. Since there is a trend of both genders preferring a particular cafeteria in similar proportions, I do not think there is a gender effect on student's preferences for the cafeterias on campus.
+
+
+### Question 2
+
+a. This is an observational study because the researchers surveyed the companies as they went about their normal activities. Also, the researchers do not assign the factories to be used in the study. Hence, it cannot be considered as an experiment. It is an observational study.
+
+b. The sampling method being used is cluster sampling.
+
+c. All the regions in Ghana with populations greater than 1,000,000.
+
+d. Randomly selecting the 5 regions for the study
+
+```{r}
+pop_regions = GhanaRegions[GhanaRegions$Population > 1000000, ]
+pop_regions
+x = sample(1:length(pop_regions$Population), 5)
+sample_data = pop_regions[x, ];sample_data
+```
+
+e. Explaining the code
+- Line 1: Get all the regions in Ghana whose population is greater than 1,000,000 and store it as a vector.
+- Line 2: Display `pop_regions` (regions with population greater than 1,000,000).
+- Line 3: Randomly select 5 numbers between 1 and number of regions greater than 1,000,000 and store it in variable `x`.
+- Line 4: Use the index values stored in `x` to get the data for the randomly selected regions and store them in the `sample_data` variable.
+
+f. Summarising the distribution.
+
+```{r}
+hist(pop_regions$Population, breaks = 30, xlim = c(1000000, 6000000), main = "Most Populous Regions in Ghana", xlab = "Population");
+
+summary(pop_regions$Population);
+IQR(pop_regions$Population);
+```
+
+The shape of the distribution is right-skewed. The measure of center is the median and the measure of spread is the interquartile range (IQR) because of the skewness of the distribution. 
+
+The bulk of the most populous regions are below the 3rd quartile (2,909,195 people). There is an outlier that shows that the most populated region is outside the interquartile range of the distribution.
+
+### Question 3
+
+```{r}
+hist(StudentsData$Expenditure, breaks = 40, col = "skyblue", ylim = c(0, 40), xlim = c(0, 600), main="Expenditure in a Week", xlab = "Amount in Cedis", ylab = "Number of Students");
+
+# Find the data summary
+summary(StudentsData$Expenditure);
+
+# Calculations for expenditure.
+# Expenditure is right skewed since mean > median.
+median(StudentsData$Expenditure);
+IQR(StudentsData$Expenditure);
+```
+
+The distribution is right skewed because the mean > median. Since the distribution is not symmetric, it does not follow the empirical rule. 
+
+a. Proportion of students below the mean
+
+```{r}
+# below_mean = pnorm(mean(StudentsData$Expenditure), mean = mean(StudentsData$Expenditure), sd = sd(StudentsData$Expenditure))
+
+below_mean = StudentsData[StudentsData$Expenditure < mean(StudentsData$Expenditure), ];
+length(below_mean$Expenditure)/length(StudentsData$Expenditure)
+```
+
+b. Proportion within one standard deviation
+
+```{r}
+pos_sd1 = mean(StudentsData$Expenditure) + sd(StudentsData$Expenditure)
+neg_sd1 = mean(StudentsData$Expenditure) - sd(StudentsData$Expenditure)
+
+bet_1_sd = StudentsData[(StudentsData$Expenditure < pos_sd1) & (StudentsData$Expenditure > neg_sd1), ];
+length(bet_1_sd$Expenditure)/length(StudentsData$Expenditure)
+```
+
+c. Proportion within two standard deviation
+
+```{r}
+pos_sd2 = mean(StudentsData$Expenditure) + 2*sd(StudentsData$Expenditure)
+neg_sd2 = mean(StudentsData$Expenditure) - 2*sd(StudentsData$Expenditure)
+
+bet_2_sd = StudentsData[(StudentsData$Expenditure < pos_sd2) & (StudentsData$Expenditure > neg_sd2), ];
+
+length(bet_2_sd$Expenditure)/length(StudentsData$Expenditure)
+```
+
+d. Proportion within three standard deviation
+
+```{r}
+pos_sd3 = mean(StudentsData$Expenditure) + 3*sd(StudentsData$Expenditure)
+neg_sd3 = mean(StudentsData$Expenditure) - 3*sd(StudentsData$Expenditure)
+
+bet_3_sd = StudentsData[(StudentsData$Expenditure < pos_sd3) & (StudentsData$Expenditure > neg_sd3), ];
+
+length(bet_3_sd$Expenditure)/length(StudentsData$Expenditure)
+```
+
+The distribution is does not follow the empirical rule because the proportions deviate from the rule. For the first standard deviation it is 0.5 opposed to 0.68. Within the two standard deviation, the proportion is 0.99 as opposed to 0.95. Within three standard deviation, the proportion is 1, as opposed to 0.997.
+
+e. Would it be unusual for a student to spend less than 100 cedis?
+
+```{r}
+below_100 = StudentsData[StudentsData$Expenditure < 100, ];
+length(below_100$Expenditure)/length(StudentsData$Expenditure)
+```
+
+Since the proportion of students less than 100 cedis is 0.15, it implies that it is unusual for a statistics student to spend on average, less than 100 cedis on food weekly.
+
+
+### Question 4
+
+a. Convenience sampling.
+
+b. Determining customer service performance
+
+```{r}
+silvertower = c(9.4, 8.3, 9.4, 6.6, 3.0, 7.8, 10.5, 9.8, 9.8, 4.7, 5.9);
+accra_mall = c(8.4, 6.6, 9.0, 5.6, 2.2, 5.3, 6.6, 7.3, 7.5, 7.2, 6.0, 7.5, 8.9, 4.5);
+osu_branch = c(7.9, 7.0, 7.1, 7.4, 6.7, 6.7, 7.3, 7.6, 6.0, 7.3, 7.2, 6.8);
+
+mean_silvertower = mean(silvertower); mean_silvertower
+mean_accra_mall = mean(accra_mall); mean_accra_mall
+mean_osu_branch = mean(osu_branch); mean_osu_branch
+
+sd_silvertower = sd(silvertower); sd_silvertower
+sd_accra_mall = sd(accra_mall); sd_accra_mall
+sd_osu_branch = sd(osu_branch); sd_osu_branch
+```
+
+The branch with the best performance would be Accra Mall. It has the lowest mean waiting time of 6.614 minutes compared to 7.745 minutes (for silvertower branch) and 7.083 minutes (for Osu branch). 
+
+The branch with the worst performance is Silverstar Tower. It has the highest mean waiting time of 7.745 minutes compared to 6.614 minutes (for Accra Mall branch) and 7.083 minutes (for Osu branch). Also, the mean waiting time for Silverstar Tower is consistent because it has a minimum spread of 0.495. 
+
+### Question 4c
+
+```{r}
+silvertower_salary = c(200, 350, 220, 180, 500, 320, 370, 350, 300, 310)
+accra_mall_salary = c(1200, 2000, 3500, 3000, 2700, 2450, 1900, 2100, 2200, 2600)
+
+# convert silvertower salary to cedis
+# 1 dollar = 12.2 cedis
+silvertower_salary_cedis = 12.2 * silvertower_salary
+```
+
+i. Calculating the mean and standard deviation
+
+```{r}
+mean_st = mean(silvertower_salary_cedis); mean_st
+mean_am = mean(accra_mall_salary); mean_am
+
+sd_st = sd(silvertower_salary_cedis); sd_st
+sd_am = sd(accra_mall_salary); sd_am
+```
+
+ii. From the sample, the average salary of Silverstar Tower workers is GHS 3782 while that of Accra Mall is GHS 2365. The standard deviation of the salary of Silverstar Tower workers is GHS 1151.664. This means that it has an inconsistent salary pay and an existence of possible outliers. On the other hand, the standard deviation of Accra Mall workers' salary is GHS 638.5966. This means that their salary is more consistent compared to that of Silverstar employees. 
+
+
+### Question 5
+
+a. The study is an experiment because the researchers determined the explanatory variable (the consumption of kenkey) and assigned them to different categories of people. The experiment is not blind because both researchers and participants were aware of the treatment of the experiment.
+
+b. The study is an experiment because the researchers controlled the amount of nitrogen and phosphorus each plot got. The experiment is not blind because the researchers were aware of the treatment. 
