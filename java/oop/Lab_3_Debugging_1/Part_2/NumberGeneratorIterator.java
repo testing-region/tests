@@ -4,12 +4,11 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class NumberGeneratorIterator implements Iterator<Integer> {
-    
+
     private NumberGenerator _generator;
 
-    
     private Integer marker;
-    
+
     private int _bug_marker = 6;
     private int count = 0;
 
@@ -17,14 +16,12 @@ public class NumberGeneratorIterator implements Iterator<Integer> {
         this._generator = generator;
         this.marker = _generator.getStart() - _generator.getStep();
 
-
     }
 
     @Override
     public boolean hasNext() {
-        return this._generator.getStep() <= 0 ?
-            this.marker + this._generator.getStep() > this._generator.getStop()
-            : this.marker + this._generator.getStep() < this._generator.getStop();
+        return this._generator.getStep() <= 0 ? this.marker + this._generator.getStep() > this._generator.getStop()
+                : this.marker + this._generator.getStep() < this._generator.getStop();
     }
 
     @Override
@@ -36,7 +33,5 @@ public class NumberGeneratorIterator implements Iterator<Integer> {
         }
         throw new NoSuchElementException();
     }
-
-
 
 }

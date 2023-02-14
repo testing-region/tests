@@ -6,7 +6,7 @@ public class testIterator {
 
         var nums = new NumberGenerator(5);
 
-        nums = new NumberGenerator(5, 0, -1);
+        nums = new NumberGenerator(10, 0, -1);
 
         for (Integer num : nums) {
             System.out.println(num);

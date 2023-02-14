@@ -1,5 +1,3 @@
-
-
 public class MotorBike {
 
     private Person owner;

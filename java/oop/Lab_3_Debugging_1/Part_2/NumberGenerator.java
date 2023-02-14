@@ -4,8 +4,8 @@ import java.util.Iterator;
 
 /**
  * "NumberGenerator is an Iterable that generates a sequence of numbers."
- * 
- * 
+ *
+ *
  */
 public class NumberGenerator implements Iterable<Integer> {
 
