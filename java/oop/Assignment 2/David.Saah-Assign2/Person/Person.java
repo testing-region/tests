@@ -15,7 +15,7 @@ public class Person {
 
     // Initialise Person attributes
     private String name;
-    private byte age; // A person's age is rarely greater than 127 years.
+    private int age;
     private String gender;
     private String[] genderTypes = { "male", "female" };
 
@@ -34,7 +34,7 @@ public class Person {
         int option = random.nextInt(getGenderTypes().length);
 
         setName("No name yet");
-        setAge((byte) 0);
+        setAge(0);
         setGender(getGenderTypes()[option]);
     }
 
@@ -47,7 +47,7 @@ public class Person {
      * @param age    the age of the person
      * @param gender the gender of the person, whether "male" or "female"
      */
-    public Person(String name, byte age, String gender) {
+    public Person(String name, int age, String gender) {
         setPerson(name, age, gender);
     }
 
@@ -77,7 +77,7 @@ public class Person {
      * @return the age of the person
      *
      */
-    public byte getAge() {
+    public int getAge() {
         return age;
     }
 
@@ -109,7 +109,7 @@ public class Person {
      * @param age the age chosen
      *
      */
-    public void setAge(byte age) {
+    public void setAge(int age) {
         if (age >= 0) {
             this.age = age;
         } else {
@@ -129,6 +129,7 @@ public class Person {
      *
      */
     public void setGender(String gender) {
+        // Check if gender entered is valid
         boolean isValidGender = Arrays.stream(getGenderTypes())
                 .anyMatch(gender::equalsIgnoreCase);
 
@@ -148,7 +149,7 @@ public class Person {
      * @param gender the gender of the person, whether "male" or "female"
      *
      */
-    public void setPerson(String name, byte age, String gender) {
+    public void setPerson(String name, int age, String gender) {
         setName(name);
         setAge(age);
         setGender(gender);
@@ -161,10 +162,7 @@ public class Person {
      * @return whether the two person objects have the same name
      */
     public boolean isSameName(Person otherPerson) {
-        if (getName().equals(otherPerson.getName())) {
-            return true;
-        }
-        return false;
+        return getName().equals(otherPerson.getName());
     }
 
     /**
@@ -174,10 +172,7 @@ public class Person {
      * @return whether the two person objects have the same age
      */
     public boolean isSameAge(Person otherPerson) {
-        if (getAge() == otherPerson.getAge()) {
-            return true;
-        }
-        return false;
+        return getAge() == otherPerson.getAge();
     }
 
     /**
@@ -190,19 +185,25 @@ public class Person {
      * 
      */
     public boolean equals(Person otherPerson) {
-        if (isSameName(otherPerson) && isSameAge(otherPerson)) {
-            return true;
-        }
-        return false;
+        return isSameName(otherPerson) && isSameAge(otherPerson);
     }
 
+    /**
+     * Checks if a person object is older than the other
+     * 
+     * @param otherPerson another person object
+     * @return whether a person is older than the other
+     */
     public boolean isOlder(Person otherPerson) {
-        if (getAge() > otherPerson.getAge()) {
-            return true;
-        }
-        return false;
+        return getAge() > otherPerson.getAge();
     }
 
+    /**
+     * Checks if a person object is younger than the other
+     * 
+     * @param otherPerson another person object
+     * @return whether a person is younger than the other
+     */
     public boolean isYounger(Person otherPerson) {
         return !isOlder(otherPerson);
     }
