@@ -1,0 +1,215 @@
+---
+title: "Homework Assignment 3"
+author: "David Abeiku Saah"
+date: "2023-02-26"
+output: word_document
+---
+
+```{r setup, message=FALSE, warning=FALSE}
+library(readr)
+
+load("auto_premiums.RData")
+```
+
+### Question 1
+
+```{r}
+n <- 50;
+O <- 21;
+A <- 22;
+B <- 5;
+AB <- 2;
+
+p_A <- A/n;
+p_B <- B/n;
+p_AB <- AB/n
+
+# a. 
+p_O <- O/n;p_O
+
+# b.
+p_A_or_B <- p_A + p_B;p_A_or_B
+
+# c.
+p_A_nor_O <- 1 - (p_A + p_O);p_A_nor_O
+
+# d.
+p_no_AB <- 1 - p_AB;p_no_AB
+
+```
+
+a. The probability that a person has type O blood is 0.42.
+b. The probability that a person has type A or type B blood is 0.54.
+c. The probability that a person has neither type A nor type O blood is 0.14.
+d. The probability that a person does not have type AB blood is 0.96.
+
+### Question 2
+
+```{r}
+students_OU <- 15;
+students_ASU <- 20;
+n <- students_ASU + students_OU;
+f_students_OU <- 8;
+m_students_ASU <- 5;
+f_students_ASU <- students_ASU - m_students_ASU;
+
+# a. 
+f_students <- f_students_OU + f_students_ASU;
+p_f_student <- f_students / n;round(p_f_student, 4)
+
+# b.
+p_f_students_ASU <- (f_students_ASU / n);
+pp = p_f_students_ASU / p_f_student;round(pp, 4)
+```
+
+a. The probability that the student is a female is 0.6571.
+b. If the selected student is female, the probability that the student comes from Arizona State University is 0.6522.
+
+### Question 3
+
+```{r}
+n <- 24;
+d <- 4;
+p_d = d / n;
+
+# a.
+round(dbinom(2, 4, p_d), 4)
+
+# b.
+round(dbinom(0, 4, p_d), 4)
+
+# c.
+round(dbinom(4, 4, p_d), 4)
+
+# d. 
+round(1 - dbinom(0, 4, p_d), 4)
+```
+
+a. The probability that exactly 2 are defective is 0.1157
+b. The probability that none is defective is 0.4823.
+c. The probability that all are defective is 0.0008.
+d. The probability that at least one is defective is 0.5177.
+
+
+### Question 4
+
+```{r}
+days_3 <- 15;
+days_4 <- 32;
+days_5 <- 56;
+days_6 <- 19;
+days_7 <- 5;
+total <- 127;
+
+# a. 
+round(days_5 / total, 4)
+
+# b.
+round(1 - ((days_6 + days_7) / total), 4)
+
+# c. 
+round((days_3 + days_4) / total, 4)
+
+# d. 
+round((days_5 + days_6 + days_7) / total, 4)
+```
+
+a. The probability that a patient stayed exactly 5 days is 0.4409.
+b. The probability that a patient stayed less than 6 days is 0.811.
+c. The probability that a patient stayed at most 4 days is 0.3701.
+d. The probability that a patient stayed at least 5 days is 0.6299.
+
+
+### Question 5
+
+```{r}
+p_need_w <- 0.04;
+p_us <- 0.60;
+p_need_w_and_us <- 0.025;
+
+# a. 
+round(p_need_w_and_us / p_us, 4)
+
+# b. 
+p_no_us = 1 - p_us;
+p_no_us_and_need_w = p_need_w - p_need_w_and_us;
+round(p_no_us_and_need_w / p_no_us, 4)
+
+# c. 
+# Test for independence: is P(need_w_and_us) == P(need_w) * P(us)
+p_need_w_and_us == p_need_w * p_us
+```
+
+a. If a company based in the United States manufactured a particular car, the probability that the car needs warranty repair is 0.0417.
+b. If a company based in the United States did not manufacture a particular car, the probability that the car needs warranty repair is 0.375.
+c. From question a and b, knowing whether or not a particular car is manufactured from the United states affects the probability (the probabilities are different). Also, from a mathematical standpoint, the location of the company manufacturing the car and warranty repair can be determined by comparing P(needing warranty and location of manufacturing company), and the product of P(needing warranty) and P(location of manufacturing company). From our comparison, the values are not the same. Hence, the two events are not statistically independent.
+
+### Question 6
+
+```{r}
+men <- 5;
+women <- 7;
+total <- men + women;
+
+# a.
+# To calculate combinations, combn() function is used. However, it generates all possible sequences. To count the number of sequences, ncol() function is used.
+# 7C3 * 5C2
+ncol(combn(7, 3)) * ncol(combn(5, 2))
+
+# b. 
+# The number of digits available are 6, and there are 4 slots.
+possible_ways <- 6 * 6 * 6 * 6;possible_ways
+```
+
+a. There are 350 possibilities.
+b. The manager can make 1296 different cards.
+
+
+### Question 7a
+
+```{r}
+boxplot(main ="Distribution of Monthly Insurance Premium Cost", data$Premium, ylab = "Cost in dollars ($)")
+```
+
+### Question 7b
+
+```{r}
+summary(data$Premium)
+```
+
+The distribution of auto insurance premiums is not symmetric because the mean (62.98) and the median (63.50) are not the same. Since the median is greater than the mean, the distribution is left-skewed.
+
+I do not expect the distribution to follow the empirical rule because the rule holds only for normal distributions (that is, when mean = median). However, the auto insurance premiums distribution is left-skewed, which does not satisfy the criteria for the empirical rule.
+
+### Question 7c
+
+```{r}
+mean(data$Premium)
+sd(data$Premium)
+```
+
+Based on the sample data, a US adult pays 62.98 dollars for monthly automobile insurance premium on average. However, this cost varies greatly for different adults since the standard deviation of the distribution is 15.17 dollars. 
+
+### Question 7d
+
+```{r}
+pos_sd1 = mean(data$Premium) + sd(data$Premium);
+neg_sd1 = mean(data$Premium) - sd(data$Premium);
+
+bet_1_sd = data[(data$Premium < pos_sd1) & (data$Premium > neg_sd1), ];
+prob_sd1 = length(bet_1_sd$Premium)/length(data$Premium);prob_sd1
+```
+
+The probability that an insurance premium chosen at random is within one standard deviation of the mean is 0.62. Based on the empirical formula, the expected probability is 0.68. 0.62 (actual probability) is close, but varies from the expected empirical probability (0.68) value by 0.06.
+
+### Question 7e
+
+```{r}
+pos_sd2 = mean(data$Premium) + (2 * sd(data$Premium));
+neg_sd2 = mean(data$Premium) - (2 * sd(data$Premium));
+
+bet_2_sd = data[(data$Premium < pos_sd2) & (data$Premium > neg_sd2), ];
+prob_sd2 = length(bet_2_sd$Premium)/length(data$Premium);prob_sd2
+```
+
+The probability that an insurance premium chosen at random is within two standard deviations of the mean is 1. This means it is certain that an insurance premium chosen at random falls within two standard deviations of the mean. However, based on the empirical formula, the expected probability is 0.95, which is 0.5 less than the actual probability calculated. The probabilities are close, but not the same.
