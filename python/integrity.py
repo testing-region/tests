@@ -1,6 +1,7 @@
 # Use height,width and expected load as your variables
 
-# This is a Java code... Since you use python just reuse the refactor the code with python
+# This is a Java code... Since you use python just reuse the refactor the code
+# with python
 # ####Height = height*12; // needed to make height calculations in inches
 # 		Area = Math.pow(width, 2);
 # 		float E = modulus_of_elasticity; // one if statement to check 3 conditions
@@ -31,7 +32,7 @@ def slender_test():
         return True
     else:
         print("!.Failed slenderness test")
-        print("Posible solutions:\n- Increase the width\n- Reduce the height\n")
+        print("Posible solutions:\nIncrease the width\nReduce the height\n")
         return False
 
 # slender_test()
@@ -50,7 +51,7 @@ def test_2():
         return True
     else:
         print("!.Failed second test")
-        print("Posible solutions:\n- Increase the width\n- Reduce the height\n")
+        print("Posible solutions:\nIncrease the width\nReduce the height\n")
         return False
 
 

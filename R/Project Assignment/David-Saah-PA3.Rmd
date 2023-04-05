@@ -1,0 +1,145 @@
+---
+title: "Project Assignment 3"
+author: "David Abeiku Saah"
+date: "02/04/2023"
+output: word_document
+---
+
+```{r setup, message=FALSE, warning=FALSE}
+```
+
+### Research Question
+
+**Are there significant differences in levels of trust in government and private media sources?**
+
+Explanatory variables: Public media, government, private media.
+Response variable: Level of trust.
+
+All the variables are ***categorical***.
+
+## 1. Load data set(s) and libraries
+
+```{r}
+# load dataset and library packages
+load("Ghana_r8");
+library(descr);
+library(stats);
+``` 
+
+
+## 2. Create variable subset
+
+```{r}
+# assign the variables to be used
+vars = c("Q41N_GHA", "Q41O_GHA", "Q41M_GHA");
+
+# create a new data frame with the variables
+my_data = data.frame(Ghana_r8[vars]);
+```
+
+## 3. Data management I: check for and recode errors and NAs
+
+```{r}
+# Check the graph if there are any error codes
+freq(my_data$Q41N_GHA, cex.names=0.55);
+
+# "Missing", "Refused" and "Don't know" are NA values since they identify as missing data
+my_data$Q41N_GHA[my_data$Q41N_GHA == "Refused"] = NA;
+my_data$Q41N_GHA[my_data$Q41N_GHA == "Missing"] = NA;
+my_data$Q41N_GHA[my_data$Q41N_GHA == "Don’t know"] = NA;
+my_data$Q41N_GHA = factor(my_data$Q41N_GHA);
+freq(my_data$Q41N_GHA, cex.names=0.8);
+
+# Check the graph if there are any error codes
+freq(my_data$Q41O_GHA, cex.names=0.55);
+
+# "Missing", "Refused" and "Don't know" are NA values since they identify as missing data
+my_data$Q41O_GHA[my_data$Q41O_GHA == "Refused"] = NA;
+my_data$Q41O_GHA[my_data$Q41O_GHA == "Missing"] = NA;
+my_data$Q41O_GHA[my_data$Q41O_GHA == "Don’t know"] = NA;
+my_data$Q41O_GHA = factor(my_data$Q41O_GHA);
+freq(my_data$Q41O_GHA, cex.names=0.8);
+
+# Check the graph if there are any error codes
+freq(my_data$Q41M_GHA, cex.names=0.55);
+
+# "Missing", "Refused" and "Don't know" are NA values since they identify as missing data
+my_data$Q41M_GHA[my_data$Q41M_GHA == "Refused"] = NA;
+my_data$Q41M_GHA[my_data$Q41M_GHA == "Missing"] = NA;
+my_data$Q41M_GHA[my_data$Q41M_GHA == "Don’t know"] = NA;
+my_data$Q41M_GHA = factor(my_data$Q41M_GHA);
+freq(my_data$Q41M_GHA, cex.names=0.8);
+```
+
+## 4. Data management II: further subset and create secondary variable
+
+```{r}
+# Merge "Just a little" and "Somewhat" into "Somewhat trust"
+
+# create new variables
+my_data$public_media <- rep(NA,nrow(my_data));
+my_data$private_media <- rep(NA,nrow(my_data));
+my_data$government <- rep(NA,nrow(my_data));
+
+# public media
+my_data$public_media[my_data$Q41N_GHA == "Not at all"] <- "Not at all";
+my_data$public_media[my_data$Q41N_GHA == "Just a little"] <- "Somewhat trust";
+my_data$public_media[my_data$Q41N_GHA == "Somewhat"] <- "Somewhat trust";
+my_data$public_media[my_data$Q41N_GHA == "A lot"] <- "A lot";
+freq(my_data$public_media);
+
+# private media
+my_data$private_media[my_data$Q41O_GHA == "Not at all"] <- "Not at all";
+my_data$private_media[my_data$Q41O_GHA == "Just a little"] <- "Somewhat trust";
+my_data$private_media[my_data$Q41O_GHA == "Somewhat"] <- "Somewhat trust";
+my_data$private_media[my_data$Q41O_GHA == "A lot"] <- "A lot";
+freq(my_data$private_media);
+
+# government sources
+
+my_data$government[my_data$Q41M_GHA == "Not at all"] <- "Not at all";
+my_data$government[my_data$Q41M_GHA == "Just a little"] <- "Somewhat trust";
+my_data$government[my_data$Q41M_GHA == "Somewhat"] <- "Somewhat trust";
+my_data$government[my_data$Q41M_GHA == "A lot"] <- "A lot";
+freq(my_data$government);
+```
+
+## 5. Descriptive statistics (sample means, standard deviations, proportions) and univariate displays
+
+```{r}
+# Univariate display for public media information source
+freq(my_data$public_media, main = "Ghanaians' Trust in Public News Media", y.axis = "percent", ylab = "Percentage of People", xlab = "Level of Trust");
+
+# Univariate display for private media information source
+freq(my_data$private_media, main = "Ghanaians' Trust in Private News Media", y.axis = "percent", ylab = "Percentage of People", xlab = "Level of Trust");
+
+# Univariate display for government information source
+freq(my_data$government, main = "Ghanaians' Trust in Government Information Sources", y.axis = "percent", ylab = "Percentage of People", xlab = "Level of Trust");
+```
+
+## 6. Bivariate tables and graphs
+
+```{r}
+
+```
+
+I have learnt that most Ghanaians are indecisive of what type of information they believe or trust. The proportion of Ghanaians from the sample that are indecisive are 69.48%, 69.93% and 67.36% for public media, private media and government information sources. A few percentage of people made a choice to accept or reject information as truth depending on its source. 
+
+It is possible that there is no significant difference between the level of trust in government and private media sources.
+
+## 7. Bivariate analysis (hypothesis tests and post-hoc tests)
+
+```{r}
+```
+
+## 8. Moderation
+
+```{r}
+```
+
+## 9. Save
+
+```{r}
+# save the data
+save(my_data, file = "./my_data.RData");
+```
