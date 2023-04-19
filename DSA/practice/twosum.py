@@ -18,8 +18,8 @@ def twoSum(nums: list[int], target: int) -> list[int]:
 
     high_index = nums.index(high)
     result.append(high_index)
-    
-    if pos_arr.count(high) > 1 or neg_arr.count(high)                                                                                                                            :
+
+    if pos_arr.count(high) > 1 or neg_arr.count(high):
         result.append(nums.index(low, high_index+1))
     else:
         result.append(nums.index(low))
