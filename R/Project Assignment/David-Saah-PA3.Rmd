@@ -1,7 +1,7 @@
 ---
-title: "Project Assignment 3"
+title: "Project Assignment 4"
 author: "David Abeiku Saah"
-date: "02/04/2023"
+date: "26/04/2023"
 output: word_document
 ---
 
@@ -10,10 +10,13 @@ output: word_document
 
 ### Research Question
 
-**Are there significant differences in levels of trust in government and private media sources?**
+**Is there an association between levels of trust in government information sources and levels of trust in private media sources?**
+Explanatory variable: level of trust in government sources.
+Response variable: level of trust in private media sources.
 
-Explanatory variables: Public media, government, private media.
-Response variable: Level of trust.
+**Is there an association between levels of trust in public media and levels of trust in private media sources?**
+Explanatory variable: level of trust in public media sources.
+Response variable: level of trust in private media sources.
 
 All the variables are ***categorical***.
 
@@ -108,29 +111,174 @@ freq(my_data$government);
 
 ```{r}
 # Univariate display for public media information source
-freq(my_data$public_media, main = "Ghanaians' Trust in Public News Media", y.axis = "percent", ylab = "Percentage of People", xlab = "Level of Trust");
+freq(my_data$public_media, main = "Trust in Public News Media", y.axis = "percent", ylab = "Percentage of People", xlab = "Level of Trust", col="red");
 
 # Univariate display for private media information source
-freq(my_data$private_media, main = "Ghanaians' Trust in Private News Media", y.axis = "percent", ylab = "Percentage of People", xlab = "Level of Trust");
+freq(my_data$private_media, main = "Trust in Private News Media", y.axis = "percent", ylab = "Percentage of People", xlab = "Level of Trust", col="lightblue");
 
 # Univariate display for government information source
-freq(my_data$government, main = "Ghanaians' Trust in Government Information Sources", y.axis = "percent", ylab = "Percentage of People", xlab = "Level of Trust");
+freq(my_data$government, main = "Trust in Government Information Sources", y.axis = "percent", ylab = "Percentage of People", xlab = "Level of Trust", col="yellow");
 ```
 
 ## 6. Bivariate tables and graphs
 
 ```{r}
-
+# Is there an association between levels of trust in government and levels of trust in private media sources?
+table1 = table(my_data$government, my_data$private_media)
+table1
 ```
 
-I have learnt that most Ghanaians are indecisive of what type of information they believe or trust. The proportion of Ghanaians from the sample that are indecisive are 69.48%, 69.93% and 67.36% for public media, private media and government information sources. A few percentage of people made a choice to accept or reject information as truth depending on its source. 
+```{r}
+# converting to a table of proportions
+prop_table1 = round(prop.table(table1, 2), 2) * 100;prop_table1
+View(prop_table1)
 
-It is possible that there is no significant difference between the level of trust in government and private media sources.
+# bar plot
+barplot(prop_table1, beside = TRUE, main = "Level of trust in government sources vs private media", xlab = "Level of trust in government information sources", ylab = "Level of trust in private media", legend = row.names(prop_table1), col = rainbow(4), ylim = c(0, 90), las = 1)
+```
+
+```{r}
+# Is there an association between levels of trust in government and levels of trust in private media sources?
+table2 = table(my_data$public_media, my_data$private_media)
+View(table2)
+```
+
+```{r}
+# converting to a table of proportions
+prop_table2 = round(prop.table(table2, 2), 2) * 100;prop_table2
+View(prop_table2)
+
+# bar plot
+barplot(prop_table2, beside = TRUE, main = "Level of trust in public media vs private media", xlab = "Level of trust in public media", ylab = "Level of trust in private media", legend = row.names(prop_table2), col = rainbow(4), ylim = c(0, 90), las = 1)
+```
+
+<!-- Project Assignment 4 -->
 
 ## 7. Bivariate analysis (hypothesis tests and post-hoc tests)
 
+**Research Question 1:** Is there an association between levels of trust in government information sources and levels of trust in private media sources?
+
+**Explanatory variable:** level of trust in government sources.
+**Response variable:** level of trust in private media sources.
+
+### Step 1: Stating The Claim
+
+**Null hypothesis:** There is no association between levels of trust in government information sources and levels of trust in private media sources?
+
+**Alternative hypothesis:** There is an association between levels of trust in government information sources and levels of trust in private media sources?
+
+### Step 2: Collect and Summarise the Sample
+
 ```{r}
+# Sample proportion for each category of the explanatory variable
+prop_alot = 80/sum(table1)
+cat("Sample proportion for A lot:", prop_alot, "\n")
+
+prop_not_at_all = 92/sum(table1)
+cat("Sample proportion for Not at all:", prop_not_at_all, "\n")
+
+prop_somewhat = 128/sum(table1)
+cat("Sample proportion for Somewhat:", prop_somewhat, "\n")
 ```
+
+### Step 3: Accessing The Evidence
+
+The sample data satisfies all the conditions for performing a chi-square test.
+
+```{r}
+chisq_result <- chisq.test(my_data$private_media, my_data$government);chisq_result
+
+chisq_result$observed
+chisq_result$expected
+chisq_result$residuals
+```
+- Test statistic = 1789.3
+- Degrees of freedom = 4
+- P-value = 2.2e-16
+
+### Step 4: Making Conclusion
+
+The p-value is the probability of getting counts like those observed, assuming the null hypothesis is true. In this case, the p-value (2.2e-16) is less than the alpha value (0.05). This means that there is significant evidence provided by the data to reject the null hypothesis, and accept the alternative hypothesis. We can conclude that there is a relationship between the level of trust people have in government information sources and the level of trust they have in private media sources.
+
+Since we rejected the null hypothesis, we could make a type 1 error. This can occur if there is no relationship between the level of trust people have in government information sources and the level of trust they have in private media sources (null hypothesis).
+
+
+<!-- state the type of error which could occur -->
+
+### Post Hoc Test
+
+```{r}
+rownames(table1) = c("A lot", "Not at all", "Somewhat trust")
+colnames(table1) = c("A lot", "Not at all", "Somewhat trust")
+
+test1 = chisq.test(table1[,1:2]); test1
+test2 = chisq.test(table1[,2:3]); test2
+```
+
+The first chi-square test is for the two categories: "A lot" and "Not at all". The test statistic is 373.5 with 2 degrees of freedom. The p-value is 2.2e-16, which is lower than the alpha value. This means that the relationship between "A lot" and "Not at all" categories are statistically significant. As a result, we reject the null hypothesis and accept the alternative hypothesis.
+
+The second chi-square test is for the two categories: "Not at all" and "Somewhat trust". The test statistic is 897.03 with 2 degrees of freedom. The p-value is 2.2e-16, which is lower than the alpha value. This means that the relationship between "Not at all" and "Somewhat trust" categories are statistically significant. As a result, we reject the null hypothesis and accept the alternative hypothesis.
+
+<!-- Research Question 2 -->
+**Research Question 2:** Is there an association between levels of trust in public media sources and levels of trust in private media sources?
+
+**Explanatory variable:** level of trust in public media sources.
+**Response variable:** level of trust in private media sources.
+
+### Step 1: Stating The Claim
+
+**Null hypothesis:** There is no association between levels of trust in public media sources and levels of trust in private media sources.
+
+**Alternative hypothesis:** There is an association between levels of trust in public media sources and levels of trust in private media sources.
+
+### Step 2: Collect and Summarise the Sample
+
+```{r}
+# Sample proportion for each category of the explanatory variable
+prop_alot = 86/sum(table2)
+cat("Sample proportion for A lot:", prop_alot, "\n")
+
+prop_not_at_all = 90/sum(table2)
+cat("Sample proportion for Not at all:", prop_not_at_all, "\n")
+
+prop_somewhat = 124/sum(table2)
+cat("Sample proportion for Somewhat:", prop_somewhat, "\n")
+```
+
+### Step 3: Accessing The Evidence
+
+The sample data satisfies all the conditions for performing a chi-square test.
+
+```{r}
+chisq_result <- chisq.test(my_data$private_media, my_data$public_media);chisq_result
+
+chisq_result$observed
+chisq_result$expected
+chisq_result$residuals
+```
+- Test statistic = 2519.9
+- Degrees of freedom = 4
+- P-value = 2.2e-16
+
+### Step 4: Making Conclusion
+
+The p-value is the probability of getting counts like those observed, assuming the null hypothesis is true. In this case, the p-value (2.2e-16) is less than the alpha value (0.05). This means that there is significant evidence provided by the data to reject the null hypothesis, and accept the alternative hypothesis. We can conclude that there is a relationship between the level of trust people have in public media sources and the level of trust they have in private media sources.
+
+Since we rejected the null hypothesis, we could make a type 1 error. This can occur if there is no relationship between the level of trust people have in public media sources and the level of trust they have in private media sources (null hypothesis).
+
+### Post Hoc Test
+
+```{r}
+rownames(table2) = c("A lot", "Not at all", "Somewhat trust")
+colnames(table2) = c("A lot", "Not at all", "Somewhat trust")
+
+test1 = chisq.test(table2[,1:2]); test1
+test2 = chisq.test(table2[,2:3]); test2
+```
+
+The first chi-square test is for the two categories: "A lot" and "Not at all". The test statistic is 450.67 with 2 degrees of freedom. The p-value is 2.2e-16, which is lower than the alpha value. This means that the relationship between "A lot" and "Not at all" categories are statistically significant. As a result, we reject the null hypothesis and accept the alternative hypothesis.
+
+The second chi-square test is for the two categories: "Not at all" and "Somewhat trust". The test statistic is 1191.2 with 2 degrees of freedom. The p-value is 2.2e-16, which is lower than the alpha value. This means that the relationship between "Not at all" and "Somewhat trust" categories are statistically significant. As a result, we reject the null hypothesis and accept the alternative hypothesis.
 
 ## 8. Moderation
 
