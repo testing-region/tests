@@ -1,8 +1,11 @@
 ---
-title: "Project Assignment 4"
+title: "Project Assignment 3 & 4"
 author: "David Abeiku Saah"
 date: "26/04/2023"
 output: word_document
+editor_options: 
+  markdown: 
+    wrap: sentence
 ---
 
 ```{r setup, message=FALSE, warning=FALSE}
@@ -11,11 +14,15 @@ output: word_document
 ### Research Question
 
 **Is there an association between levels of trust in government information sources and levels of trust in private media sources?**
+
 Explanatory variable: level of trust in government sources.
+
 Response variable: level of trust in private media sources.
 
 **Is there an association between levels of trust in public media and levels of trust in private media sources?**
+
 Explanatory variable: level of trust in public media sources.
+
 Response variable: level of trust in private media sources.
 
 All the variables are ***categorical***.
@@ -27,8 +34,7 @@ All the variables are ***categorical***.
 load("Ghana_r8");
 library(descr);
 library(stats);
-``` 
-
+```
 
 ## 2. Create variable subset
 
@@ -44,34 +50,34 @@ my_data = data.frame(Ghana_r8[vars]);
 
 ```{r}
 # Check the graph if there are any error codes
-freq(my_data$Q41N_GHA, cex.names=0.55);
+freq(my_data$Q41N_GHA, cex.names=1.0);
 
 # "Missing", "Refused" and "Don't know" are NA values since they identify as missing data
 my_data$Q41N_GHA[my_data$Q41N_GHA == "Refused"] = NA;
 my_data$Q41N_GHA[my_data$Q41N_GHA == "Missing"] = NA;
 my_data$Q41N_GHA[my_data$Q41N_GHA == "Don’t know"] = NA;
 my_data$Q41N_GHA = factor(my_data$Q41N_GHA);
-freq(my_data$Q41N_GHA, cex.names=0.8);
+freq(my_data$Q41N_GHA, cex.names=1.0);
 
 # Check the graph if there are any error codes
-freq(my_data$Q41O_GHA, cex.names=0.55);
+freq(my_data$Q41O_GHA, cex.names=1.0);
 
 # "Missing", "Refused" and "Don't know" are NA values since they identify as missing data
 my_data$Q41O_GHA[my_data$Q41O_GHA == "Refused"] = NA;
 my_data$Q41O_GHA[my_data$Q41O_GHA == "Missing"] = NA;
 my_data$Q41O_GHA[my_data$Q41O_GHA == "Don’t know"] = NA;
 my_data$Q41O_GHA = factor(my_data$Q41O_GHA);
-freq(my_data$Q41O_GHA, cex.names=0.8);
+freq(my_data$Q41O_GHA, cex.names=1.0);
 
 # Check the graph if there are any error codes
-freq(my_data$Q41M_GHA, cex.names=0.55);
+freq(my_data$Q41M_GHA, cex.names=1.0);
 
 # "Missing", "Refused" and "Don't know" are NA values since they identify as missing data
 my_data$Q41M_GHA[my_data$Q41M_GHA == "Refused"] = NA;
 my_data$Q41M_GHA[my_data$Q41M_GHA == "Missing"] = NA;
 my_data$Q41M_GHA[my_data$Q41M_GHA == "Don’t know"] = NA;
 my_data$Q41M_GHA = factor(my_data$Q41M_GHA);
-freq(my_data$Q41M_GHA, cex.names=0.8);
+freq(my_data$Q41M_GHA, cex.names=1.0);
 ```
 
 ## 4. Data management II: further subset and create secondary variable
@@ -131,10 +137,9 @@ table1
 ```{r}
 # converting to a table of proportions
 prop_table1 = round(prop.table(table1, 2), 2) * 100;prop_table1
-View(prop_table1)
 
 # bar plot
-barplot(prop_table1, beside = TRUE, main = "Level of trust in government sources vs private media", xlab = "Level of trust in government information sources", ylab = "Level of trust in private media", legend = row.names(prop_table1), col = rainbow(4), ylim = c(0, 90), las = 1)
+barplot(prop_table1, beside = TRUE, main = "Level of Trust in Government Sources vs Private Media", xlab = "Level of Trust in Government Information Sources", ylab = "Level of Trust in Private Media", legend = row.names(prop_table1), col = rainbow(3), ylim = c(0, 90), las = 1)
 ```
 
 ```{r}
@@ -146,10 +151,9 @@ View(table2)
 ```{r}
 # converting to a table of proportions
 prop_table2 = round(prop.table(table2, 2), 2) * 100;prop_table2
-View(prop_table2)
 
 # bar plot
-barplot(prop_table2, beside = TRUE, main = "Level of trust in public media vs private media", xlab = "Level of trust in public media", ylab = "Level of trust in private media", legend = row.names(prop_table2), col = rainbow(4), ylim = c(0, 90), las = 1)
+barplot(prop_table2, beside = TRUE, main = "Level of Trust in Public Media vs Private Media", xlab = "Level of Trust in Public Media", ylab = "Level of Trust in Private Media", legend = row.names(prop_table2), col = rainbow(3), ylim = c(0, 90), las = 1)
 ```
 
 <!-- Project Assignment 4 -->
@@ -159,6 +163,7 @@ barplot(prop_table2, beside = TRUE, main = "Level of trust in public media vs pr
 **Research Question 1:** Is there an association between levels of trust in government information sources and levels of trust in private media sources?
 
 **Explanatory variable:** level of trust in government sources.
+
 **Response variable:** level of trust in private media sources.
 
 ### Step 1: Stating The Claim
@@ -192,16 +197,20 @@ chisq_result$observed
 chisq_result$expected
 chisq_result$residuals
 ```
-- Test statistic = 1789.3
-- Degrees of freedom = 4
-- P-value = 2.2e-16
+
+-   Test statistic = 1789.3
+-   Degrees of freedom = 4
+-   P-value = 2.2e-16
 
 ### Step 4: Making Conclusion
 
-The p-value is the probability of getting counts like those observed, assuming the null hypothesis is true. In this case, the p-value (2.2e-16) is less than the alpha value (0.05). This means that there is significant evidence provided by the data to reject the null hypothesis, and accept the alternative hypothesis. We can conclude that there is a relationship between the level of trust people have in government information sources and the level of trust they have in private media sources.
+The p-value is the probability of getting counts like those observed, assuming the null hypothesis is true.
+In this case, the p-value (2.2e-16) is less than the alpha value (0.05).
+This means that there is significant evidence provided by the data to reject the null hypothesis, and accept the alternative hypothesis.
+We can conclude that there is a relationship between the level of trust people have in government information sources and the level of trust they have in private media sources.
 
-Since we rejected the null hypothesis, we could make a type 1 error. This can occur if there is no relationship between the level of trust people have in government information sources and the level of trust they have in private media sources (null hypothesis).
-
+Since we rejected the null hypothesis, we could make a type 1 error.
+This can occur if there is no relationship between the level of trust people have in government information sources and the level of trust they have in private media sources (null hypothesis).
 
 <!-- state the type of error which could occur -->
 
@@ -215,11 +224,20 @@ test1 = chisq.test(table1[,1:2]); test1
 test2 = chisq.test(table1[,2:3]); test2
 ```
 
-The first chi-square test is for the two categories: "A lot" and "Not at all". The test statistic is 373.5 with 2 degrees of freedom. The p-value is 2.2e-16, which is lower than the alpha value. This means that the relationship between "A lot" and "Not at all" categories are statistically significant. As a result, we reject the null hypothesis and accept the alternative hypothesis.
+The first chi-square test is for the two categories: "A lot" and "Not at all".
+The test statistic is 373.5 with 2 degrees of freedom.
+The p-value is 2.2e-16, which is lower than the alpha value.
+This means that the relationship between "A lot" and "Not at all" categories are statistically significant.
+As a result, we reject the null hypothesis and accept the alternative hypothesis.
 
-The second chi-square test is for the two categories: "Not at all" and "Somewhat trust". The test statistic is 897.03 with 2 degrees of freedom. The p-value is 2.2e-16, which is lower than the alpha value. This means that the relationship between "Not at all" and "Somewhat trust" categories are statistically significant. As a result, we reject the null hypothesis and accept the alternative hypothesis.
+The second chi-square test is for the two categories: "Not at all" and "Somewhat trust".
+The test statistic is 897.03 with 2 degrees of freedom.
+The p-value is 2.2e-16, which is lower than the alpha value.
+This means that the relationship between "Not at all" and "Somewhat trust" categories are statistically significant.
+As a result, we reject the null hypothesis and accept the alternative hypothesis.
 
 <!-- Research Question 2 -->
+
 **Research Question 2:** Is there an association between levels of trust in public media sources and levels of trust in private media sources?
 
 **Explanatory variable:** level of trust in public media sources.
@@ -256,15 +274,20 @@ chisq_result$observed
 chisq_result$expected
 chisq_result$residuals
 ```
-- Test statistic = 2519.9
-- Degrees of freedom = 4
-- P-value = 2.2e-16
+
+-   Test statistic = 2519.9
+-   Degrees of freedom = 4
+-   P-value = 2.2e-16
 
 ### Step 4: Making Conclusion
 
-The p-value is the probability of getting counts like those observed, assuming the null hypothesis is true. In this case, the p-value (2.2e-16) is less than the alpha value (0.05). This means that there is significant evidence provided by the data to reject the null hypothesis, and accept the alternative hypothesis. We can conclude that there is a relationship between the level of trust people have in public media sources and the level of trust they have in private media sources.
+The p-value is the probability of getting counts like those observed, assuming the null hypothesis is true.
+In this case, the p-value (2.2e-16) is less than the alpha value (0.05).
+This means that there is significant evidence provided by the data to reject the null hypothesis, and accept the alternative hypothesis.
+We can conclude that there is a relationship between the level of trust people have in public media sources and the level of trust they have in private media sources.
 
-Since we rejected the null hypothesis, we could make a type 1 error. This can occur if there is no relationship between the level of trust people have in public media sources and the level of trust they have in private media sources (null hypothesis).
+Since we rejected the null hypothesis, we could make a type 1 error.
+This can occur if there is no relationship between the level of trust people have in public media sources and the level of trust they have in private media sources (null hypothesis).
 
 ### Post Hoc Test
 
@@ -276,9 +299,17 @@ test1 = chisq.test(table2[,1:2]); test1
 test2 = chisq.test(table2[,2:3]); test2
 ```
 
-The first chi-square test is for the two categories: "A lot" and "Not at all". The test statistic is 450.67 with 2 degrees of freedom. The p-value is 2.2e-16, which is lower than the alpha value. This means that the relationship between "A lot" and "Not at all" categories are statistically significant. As a result, we reject the null hypothesis and accept the alternative hypothesis.
+The first chi-square test is for the two categories: "A lot" and "Not at all".
+The test statistic is 450.67 with 2 degrees of freedom.
+The p-value is 2.2e-16, which is lower than the alpha value.
+This means that the relationship between "A lot" and "Not at all" categories are statistically significant.
+As a result, we reject the null hypothesis and accept the alternative hypothesis.
 
-The second chi-square test is for the two categories: "Not at all" and "Somewhat trust". The test statistic is 1191.2 with 2 degrees of freedom. The p-value is 2.2e-16, which is lower than the alpha value. This means that the relationship between "Not at all" and "Somewhat trust" categories are statistically significant. As a result, we reject the null hypothesis and accept the alternative hypothesis.
+The second chi-square test is for the two categories: "Not at all" and "Somewhat trust".
+The test statistic is 1191.2 with 2 degrees of freedom.
+The p-value is 2.2e-16, which is lower than the alpha value.
+This means that the relationship between "Not at all" and "Somewhat trust" categories are statistically significant.
+As a result, we reject the null hypothesis and accept the alternative hypothesis.
 
 ## 8. Moderation
 
