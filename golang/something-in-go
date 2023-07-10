@@ -1,0 +1,44 @@
+package main
+
+import (
+	"encoding/xml"
+	"fmt"
+	"io"
+	"os"
+
+	"github.com/jedib0t/go-pretty/v6/table"
+
+	def "DaveSaah/xml-to-csv/definitions"
+)
+
+func main() {
+	// open xml file
+	xmlFile, err := os.Open("./books.xml")
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	// close file at the end of the program
+	defer xmlFile.Close()
+
+	xmlBytes, _ := io.ReadAll(xmlFile)
+
+	var catalog def.Catalog
+
+	// convert from xml to data object
+	xml.Unmarshal(xmlBytes, &catalog)
+
+	// present data in a table
+	t := table.NewWriter()
+	t.SetOutputMirror(os.Stdout)
+	t.SetStyle(table.StyleLight)
+	t.AppendHeader(table.Row{
+		"ID", "Author", "Title", "Genre", "Price", "Date Published", "Description",
+	})
+
+	for _, data := range catalog.Books {
+		t.AppendRow(table.Row{data.ID, data.Author, data.Title, data.Genre, data.Price, data.PublishDate, data.Description})
+	}
+
+	t.Render()
+}
