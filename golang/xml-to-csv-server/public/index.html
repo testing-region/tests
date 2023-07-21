@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="m-0 text-center">
+    <h1 class="text-3xl font-bold py-6">XML to CSV</h1>
+    <div class="my-15 mx-32">
+      <form
+        action="/upload"
+        id="form"
+        enctype="multipart/form-data"
+        method="post"
+      >
+        <div class="border-2 border-dashed p-10">
+          <input type="file" name="xmlFile" value="" accept=".xml" required />
+        </div>
+        <input
+          class="mt-8 text-white bg-blue-500 px-8 py-3 rounded-lg cursor-pointer"
+          type="submit"
+          value="Convert to CSV"
+        />
+      </form>
+    </div>
+  </body>
+</html>
