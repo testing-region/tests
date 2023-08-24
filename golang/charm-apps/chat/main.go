@@ -26,10 +26,10 @@ type errMsg error
 
 type model struct {
 	viewport    viewport.Model
-	messages    []string
 	textarea    textarea.Model
 	senderStyle lipgloss.Style
 	err         error
+	messages    []string
 }
 
 func initialModel() model {
