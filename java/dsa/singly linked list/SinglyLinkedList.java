@@ -1,5 +1,3 @@
-package dsa;
-
 /**
  * A node contains data and a reference
  *
@@ -10,7 +8,6 @@ class Node {
 
   public Node(int data) {
     this.data = data;
-    this.next = null;
   }
 }
 
@@ -21,10 +18,6 @@ class Node {
 public class SinglyLinkedList {
   private int size = 0; // tracks the size of the list
   private Node head; // holds the address of the first node
-
-  public SinglyLinkedList() {
-    this.head = null;
-  }
 
   /**
    * Insert a node into a linked list
@@ -60,15 +53,14 @@ public class SinglyLinkedList {
 
     // insert the new node any where between the first and last node
     else {
-      int count = 1; // track movement in the linked list
       Node current = head; // point to the head
 
-      // The new node will be pointed by the node in the position before it.
-      while (count < (pos - 1)) {
+      // navigate to the node before the specified one
+      for (int i = 0; i < (pos - 1); i++) {
         current = current.next;
-        count++;
       }
 
+      // The new node will be pointed by the node in the position before it.
       newNode.next = current.next;
       current.next = newNode;
       size++;
@@ -83,45 +75,87 @@ public class SinglyLinkedList {
    */
   public void delete(int pos) {
     // if the linked list is empty
-    if (head == null) {
+    if (isEmpty()) {
       return;
     }
+
     // if the first node is to be removed
-    else if (pos == 1) {
+    if (pos == 1) {
       head = head.next;
       size--;
       return;
     }
 
-    // if node is at the end of the linked list
-    else if (pos == size) {
-      Node current = head; // set current node to head
-      int counter = 1; // track the movement in the linked list
+    Node current = head; // set current node to head
 
-      while (count < (pos - 1)) {
-        current = current.next;
-        count++;
-      }
-
-      current.next = null;
-      size--;
-      return;
+    // navigate to the node before the specified one
+    for (int i = 0; i < (pos - 1); i++) {
+      current = current.next;
     }
 
-    // if the node is any where in-between
-    else {
-      Node current = head;
-      int count = 1;
+    if (pos == size) {
+      current.next = null; // if node is at the end of the linked list
+    } else {
+      current.next = current.next.next; // if the node is any where in-between
+    }
 
-      while (count < (pos - 1)) {
-        current = current.next;
-        count++;
+    size--; // reduce the size
+  }
+
+  /**
+   * Check if the linkedlist is empty
+   * 
+   * @return whether the linkedlist is empty or not
+   */
+  public boolean isEmpty() {
+    return head == null;
+  }
+
+  /**
+   * Return the data at the specified postion
+   * 
+   * @param pos postion of the node
+   * @return data in the node
+   *
+   */
+  public int get(int pos) {
+    Node current = head;
+
+    for (int i = 0; i < pos - 1; i++) {
+      current = current.next;
+    }
+
+    return current.data;
+  }
+
+  /**
+   * Gets the size of the list
+   * 
+   * @return the size of the list
+   */
+  public int listSize() {
+    return size;
+  }
+
+  /**
+   * Gets the position of a node that contains the specified data
+   * 
+   * @param data the specified data
+   * @return the position of the data in the list
+   */
+  public int positionOf(int data) {
+    Node current = head;
+    int pos = 0;
+
+    for (int i = 0; i < size; i++) {
+      if (current.data == data) {
+        pos = i + 1;
       }
 
-      current.next = current.next.next;
-      size--;
-      return;
+      current = current.next;
     }
+
+    return pos;
   }
 
   /**
@@ -140,4 +174,5 @@ public class SinglyLinkedList {
     System.out.print("]");
     System.out.println();
   }
+
 }
