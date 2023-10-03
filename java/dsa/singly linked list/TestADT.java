@@ -4,7 +4,7 @@
 public class TestADT {
 
   public static void main(String[] args) {
-    SinglyLinkedList list = new SinglyLinkedList();
+    SinglyLinkedList<Integer> list = new SinglyLinkedList<Integer>();
 
     list.insert(100, 1);
     list.insert(201, 2);

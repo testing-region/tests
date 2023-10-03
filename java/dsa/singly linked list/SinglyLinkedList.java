@@ -2,12 +2,23 @@
  * A node contains data and a reference
  *
  */
-class Node {
-  int data; // holds the data of a node
-  Node next; // holds the pointer to the next node
+class Node<T> {
+  T data; // holds the data of a node
+  Node<T> next; // holds the pointer to the next node
 
-  public Node(int data) {
+  public Node(T data) {
     this.data = data;
+  }
+
+  /**
+   * Check if any two nodes contain the same data
+   *
+   * @param otherNode the other node to compare with
+   * @return whether two nodes have the same data or not
+   *
+   */
+  public boolean equals(Node otherNode) {
+    return this.data.equals(otherNode.data);
   }
 }
 
@@ -15,9 +26,9 @@ class Node {
  * Create a singly linked list data structure
  *
  */
-public class SinglyLinkedList {
+public class SinglyLinkedList<T> {
   private int size = 0; // tracks the size of the list
-  private Node head; // holds the address of the first node
+  private Node<T> head; // holds the address of the first node
 
   /**
    * Insert a node into a linked list
@@ -25,20 +36,20 @@ public class SinglyLinkedList {
    * @param data the data to insert into the linked list
    * @param pos  where to insert the data
    */
-  public void insert(int data, int pos) {
-    Node newNode = new Node(data);
+  public void insert(T data, int pos) {
+    Node<T> newNode = new Node<T>(data);
 
     // if it is for inserting into the first node
     if (pos == 1) {
-      newNode.next = this.head; // set the next node to point to the node head points to
-      this.head = newNode; // set head to the new node, n
+      newNode.next = head; // set the next node to point to the node head points to
+      head = newNode; // set head to the new node, n
       size++; // increase the size of the linked list
       return;
     }
 
     // if it is for inserting into the end of the linked list
     else if (pos == size + 1) {
-      Node current = head; // set the current node to the head
+      Node<T> current = head; // set the current node to the head
 
       // set the current node to the end of the linked list
       while (current.next != null) {
@@ -53,7 +64,7 @@ public class SinglyLinkedList {
 
     // insert the new node any where between the first and last node
     else {
-      Node current = head; // point to the head
+      Node<T> current = head; // point to the head
 
       // navigate to the node before the specified one
       for (int i = 1; i < (pos - 1); i++) {
@@ -86,7 +97,7 @@ public class SinglyLinkedList {
       return;
     }
 
-    Node current = head; // set current node to head
+    Node<T> current = head; // set current node to head
 
     // navigate to the node before the specified one
     for (int i = 1; i < (pos - 1); i++) {
@@ -118,11 +129,16 @@ public class SinglyLinkedList {
    * @return data in the node
    *
    */
-  public int get(int pos) {
-    Node current = head;
+  public T get(int pos) {
+    if (pos > listSize() || pos < 0) {
+      return null; // when there is no node at the specified position
+    }
 
-    for (int i = 0; i < pos - 1; i++) {
+    Node<T> current = head;
+
+    for (int i = 1; i < pos; i++) {
       current = current.next;
+
     }
 
     return current.data;
@@ -143,27 +159,27 @@ public class SinglyLinkedList {
    * @param data the specified data
    * @return the position of the data in the list
    */
-  public int positionOf(int data) {
-    Node current = head;
-    int pos = 0;
+  public int positionOf(T data) {
+    Node<T> current = head;
+    int pos = 1;
 
-    for (int i = 1; i <= size; i++) {
-      if (current.data == data) {
-        pos = i;
-        break;
+    while (current != null) {
+      if (current.data.equals(data)) {
+        return pos;
       }
 
       current = current.next;
+      pos++;
     }
 
-    return pos;
+    return -1; // when the list does not have the data
   }
 
   /**
    * Display the linked list
    */
   public void display() {
-    Node current = head;
+    Node<T> current = head;
 
     System.out.print("[ ");
 
