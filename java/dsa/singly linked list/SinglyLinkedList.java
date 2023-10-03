@@ -56,7 +56,7 @@ public class SinglyLinkedList {
       Node current = head; // point to the head
 
       // navigate to the node before the specified one
-      for (int i = 0; i < (pos - 1); i++) {
+      for (int i = 1; i < (pos - 1); i++) {
         current = current.next;
       }
 
@@ -89,7 +89,7 @@ public class SinglyLinkedList {
     Node current = head; // set current node to head
 
     // navigate to the node before the specified one
-    for (int i = 0; i < (pos - 1); i++) {
+    for (int i = 1; i < (pos - 1); i++) {
       current = current.next;
     }
 
@@ -147,9 +147,10 @@ public class SinglyLinkedList {
     Node current = head;
     int pos = 0;
 
-    for (int i = 0; i < size; i++) {
+    for (int i = 1; i <= size; i++) {
       if (current.data == data) {
-        pos = i + 1;
+        pos = i;
+        break;
       }
 
       current = current.next;
