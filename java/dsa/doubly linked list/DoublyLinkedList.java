@@ -2,24 +2,35 @@
  * A node contains data and a reference
  *
  */
-class Node {
-  int data; // holds the data of a node
-  Node next; // holds the pointer to the next node
-  Node prev; // holds the pointer to the prev node
+class Node<T> {
+  T data; // holds the data of a node
+  Node<T> next; // holds the pointer to the next node
+  Node<T> prev; // holds the pointer to the prev node
 
-  public Node(int data) {
+  public Node(T data) {
     this.data = data;
+  }
+
+  /**
+   * Check if any two nodes contain the same data
+   *
+   * @param otherNode the other node to compare with
+   * @return whether two nodes have the same data or not
+   *
+   */
+  public boolean equals(Node otherNode) {
+    return this.data.equals(otherNode.data);
   }
 }
 
 /**
- * Create a singly linked list data structure
+ * Create a doubly linked list data structure
  *
  */
-public class DoublyLinkedList {
+public class DoublyLinkedList<T> {
   private int size = 0; // tracks the size of the list
-  private Node head; // holds the address of the first node
-  private Node tail; // holds the address of the last node
+  private Node<T> head; // holds the address of the first node
+  private Node<T> tail; // holds the address of the last node
 
   /**
    * Insert a node into a linked list
@@ -27,8 +38,8 @@ public class DoublyLinkedList {
    * @param data the data to insert into the linked list
    * @param pos  where to insert the data
    */
-  public void insert(int data, int pos) {
-    Node newNode = new Node(data);
+  public void insert(T data, int pos) {
+    Node<T> newNode = new Node<T>(data);
 
     // if it is for inserting into the first node
     if (pos == 1) {
@@ -57,7 +68,7 @@ public class DoublyLinkedList {
 
     // insert the new node any where between the first and last node
     else {
-      Node current = head; // point to the head
+      Node<T> current = head; // point to the head
 
       // navigate to the node before the specified one
       for (int i = 1; i < (pos - 1); i++) {
@@ -103,7 +114,7 @@ public class DoublyLinkedList {
 
     // when deleting from anywhere in between
     else {
-      Node current = head; // set current node to head
+      Node<T> current = head; // set current node to head
 
       // navigate to the node before the specified one
       for (int i = 1; i < (pos - 1); i++) {
@@ -134,8 +145,12 @@ public class DoublyLinkedList {
    * @return data in the node
    *
    */
-  public int get(int pos) {
-    Node current = head;
+  public T get(int pos) {
+    if (pos > listSize() || pos < 0) {
+      return null; // when there is no node at the specified position
+    }
+
+    Node<T> current = head;
 
     for (int i = 1; i < pos; i++) {
       current = current.next;
@@ -160,19 +175,19 @@ public class DoublyLinkedList {
    * @return the position of the data in the list
    */
   public int positionOf(int data) {
-    Node current = head;
-    int pos = 0;
+    Node<T> current = head;
+    int pos = 1;
 
-    for (int i = 1; i <= listSize(); i++) {
-      if (current.data == data) {
-        pos = i;
-        break;
+    while (current != null) {
+      if (current.data.equals(data)) {
+        return pos;
       }
 
       current = current.next;
+      pos++;
     }
 
-    return pos;
+    return -1; // when the list does not have the data
   }
 
   /**

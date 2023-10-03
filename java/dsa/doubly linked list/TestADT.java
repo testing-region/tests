@@ -4,7 +4,7 @@
 public class TestADT {
 
   public static void main(String[] args) {
-    DoublyLinkedList list = new DoublyLinkedList();
+    DoublyLinkedList<Integer> list = new DoublyLinkedList<Integer>();
 
     list.insert(100, 1);
     list.insert(201, 2);
