@@ -100,6 +100,7 @@ public class DoublyLinkedList<T> {
     // if the first node is to be removed
     if (pos == 1) {
       head = head.next;
+      head.prev = null;
       size--;
       return;
     }
@@ -174,7 +175,7 @@ public class DoublyLinkedList<T> {
    * @param data the specified data
    * @return the position of the data in the list
    */
-  public int positionOf(int data) {
+  public int positionOf(T data) {
     Node<T> current = head;
     int pos = 1;
 
