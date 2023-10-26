@@ -1,10 +1,11 @@
 class Hello {
+  public static void main(String[] args) {
 
-    public static final double ESS_DISCOUNT = 0.2;
+    int rear = 2;
+    int front = 0;
 
-    public static void main(String[] args) {
-        String name = "Hello";
-        System.out.println(name);
-        System.out.println(ESS_DISCOUNT);
+    for (int i = rear; i >= front; i--) {
+      System.out.println(i);
     }
+  }
 }
