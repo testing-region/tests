@@ -1,9 +1,11 @@
 public class Main {
   public static void main(String[] args) {
     FileTree<File> tree = new FileTree<>();
+
     File file1 = new File("file1");
     File file2 = new File("file2");
     Directory dir3 = new Directory("dir3");
+
     tree.add(file1);
     tree.add(file2);
     tree.add(dir3);
