@@ -20,6 +20,14 @@ public class Main {
     dir2.add(new File("file6"));
 
     tree.printFileTree();
+
+    System.out.println();
+    System.out.println();
+
+    tree.findPath("file1");
+    tree.findPath("file4");
+    tree.findPath("file6");
+
   }
 }
 

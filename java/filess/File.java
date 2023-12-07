@@ -51,5 +51,5 @@ class File {
 
   public PrintStream info() {
     return System.out.format("%-5s %-20s %-3s %s\n", "file", modified_time, "", name);
-    }
+  }
 }
